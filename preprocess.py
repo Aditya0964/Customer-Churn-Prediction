@@ -19,3 +19,15 @@ print("\nMissing values successfully handled!")
 # 4. View a snapshot of what we have
 print("\n--- First 3 Rows of the Dataset ---")
 print(df[['customerID', 'tenure', 'MonthlyCharges', 'TotalCharges', 'Churn']].head(3))
+
+
+# --- PHASE 2: FEATURE ENGINEERING ---
+
+#removing cutomer id column
+df = df.drop('customerID', axis=1)
+
+df['Churn'] = df['Churn'].map({'Yes': 1, 'No': 0})
+df = pd.get_dummies(df, drop_first=True)
+
+print("\n--- Phase 2 Complete: Data is now pure numbers! ---")
+print(f"Old column count was 21. New column count: {df.shape[1]}")
