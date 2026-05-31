@@ -17,7 +17,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 print("\nStep 2: Training Random Forest Classifier...")
 # n_estimators=100 means building a forest of 100 independent decision trees.
 # random_state=42 keeps randomness predictable so we get the same results each run.
-rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+# We added class_weight='balanced' to force the AI to pay attention to churners
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 rf_model.fit(X_train, y_train)
 
 print("\nStep 3: Evaluating Random Forest...")
